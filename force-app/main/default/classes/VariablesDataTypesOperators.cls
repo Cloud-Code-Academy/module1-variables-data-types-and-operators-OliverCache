@@ -18,7 +18,7 @@
  * If statements are not specifically covered in the lesson this module, but review module 2 flow control section for an overview if needed.
  * Resources: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_if_else.htm 
  * 
- * @author Your Name
+ * @author Oliver Cache
  */
 
 public with sharing class VariablesDataTypesOperators {
@@ -31,8 +31,14 @@ public with sharing class VariablesDataTypesOperators {
      * @param b The second number.
      * @return The sum of the two numbers, or null if either number is null.
      */
-    public static Integer addition(Integer a, Integer b) {  
-        return null; // Replace null with the variable you used to store the result
+    public static Integer addition(Integer a, Integer b) {
+        if (a == null || b == null) {
+                return null; // Handle null inputs safely
+        }
+        Integer result = a + b; // Store computation in variable named result
+        System.debug('The result of addition is:' + result); // debug the result variable for demonstration purposes
+        return result; // Returns the sum only if a value is present in each variable
+        
     }
 
     /**
@@ -44,7 +50,12 @@ public with sharing class VariablesDataTypesOperators {
      * @return The difference between the two numbers.
      */
     public static Integer subtraction(Integer a, Integer b) {
-        return null; // Replace null with the variable you used to store the result
+        if (a == null || b == null){
+            return null; // Handle null inputs safely
+        }
+        Integer result = a - b; // Store computation in variable named result
+        System.debug('The result of subtraction is:' + result);
+        return result; // Replace the diference only if a value is present in each variable
     }
 
     /**
@@ -56,7 +67,11 @@ public with sharing class VariablesDataTypesOperators {
      * @return The product of the two numbers.
      */
     public static Integer multiplication(Integer a, Integer b) {
-        return null; // Replace null with the variable you used to store the result
+        if (a == null || b == null){
+            return null; // Handle null inputs safely
+        Integer result = a * b; // Store computation in variable named result
+        System.debug('The result of multiplication is:' + result);
+        return result; // Computes the difference only if a value is present in each variable
     }
 
     /**
@@ -69,7 +84,15 @@ public with sharing class VariablesDataTypesOperators {
      * @return The quotient of the division, or 0 if the denominator is zero.
      */
     public static Double division(Double a, Double b) {
-        return null; // Replace null with the variable you used to store the result
+        if (a == null || b == null){
+            return null; // Handle null inputs safely
+        }
+        if (b == 0){
+            return null; // Handle division by zero safely
+        }
+        Double result = a / b; // Store computation in variable named result
+        System.debug('The result of division is:' + result);
+        return result; // perform division safely
     }
 
     /**
@@ -83,7 +106,15 @@ public with sharing class VariablesDataTypesOperators {
      * @return True if the number is even, False otherwise.
      */
     public static Boolean isEven(Integer num) {
-        return null; // Replace null with the variable you used to store the result
+        if (num == null) {
+            return false; // Handle null inputs safely
+        }
+        Integer number = num % 2; // Store remainder of division in variable named number
+        if (number == 0) {
+            System.debug('Is number even?' + number);
+            return true;
+        }
+        return false; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -94,8 +125,15 @@ public with sharing class VariablesDataTypesOperators {
      * @return true if the number is positive, false otherwise.
      */
     public static Boolean isPositive(Integer num) {
-        return null; // Replace null with the variable you used to store the result
-    }
+        if (num == null) {
+        return false; // Handle null safely
+    }   
+        if (num > 0){
+            System.debug('Number greater than zero is: ' + num);
+            return true; //Check if number is greater than 0
+        }
+        return false;
+}
 
     /**
      * Question 7
@@ -106,7 +144,16 @@ public with sharing class VariablesDataTypesOperators {
      * @return The concatenated string.
      */
     public static String concatenateStrings(String str1, String str2) {
-        return null; // Replace null with the variable you used to store the result
+        if (str1 == null) {
+            str1 = ''; // Convert null to an empty string
+        }
+        if (str2 == null){
+            str2 = ''; // Convert null to an empty string
+        }
+        String result = str1 + str2; //concatenate strings
+        System.debug(result); // Display result on debug
+        return result; // result concatenated string
+        
     }
 
 	/**
@@ -121,7 +168,12 @@ public with sharing class VariablesDataTypesOperators {
 	 * @return The complete sentence as a single String.
 	 */
 	public static String createSentence(String noun, String verb, String endingPunctuation) {
-		return null; // Replace null with the variable you used to store the result
+        if (noun == null || verb == null || endingPunctuation == null) {
+            throw new Exception('Noun, Verb, or Ending Punctuation not provided');
+        }
+        String result = 'The ' + noun + ' is ' + verb + endingPunctuation;
+        System.debug(result);
+		return result; // Return the constructed sentence
 	}
 
     /**
@@ -134,7 +186,12 @@ public with sharing class VariablesDataTypesOperators {
      * @return True if the date is in the past, False otherwise.
      */
     public static Boolean isDateInPast(Date dt) {
-        return null; // Replace null with the variable you used to store the result
+        if ( dt < Date.today()) {
+            String result = 'Date is in the past';
+            System.debug(result);
+            return true;
+        }
+        return false; // returns false if date is in the future
     }
 
     /**
