@@ -204,8 +204,14 @@ public with sharing class VariablesDataTypesOperators {
      * @return True if the date is today or in the future, False otherwise.
      */
     public static Boolean isDateTodayOrFuture(Date dt) {
-        return null; // Replace null with the variable you used to store the result
-    }
+        if (dt == null) {
+            throw new Exception('dt cannot be null');
+        }
+        if (dt >= Date.today()) {
+            return true;
+        System.debug(dt);
+        }
+        return false; // Return false if the date is in the past
 
     /**
      * Question 11
@@ -216,10 +222,14 @@ public with sharing class VariablesDataTypesOperators {
      * @param minutes The number of minutes.
      * @return The number of milliseconds equivalent to the given number of minutes.
      */
-    Integer MILLISECONDS_PER_MINUTE = null; // Make this value a constant
+    public static final Integer MILLISECONDS_PER_MINUTE = 60000; // Make this value a constant
     public static Integer convertMinutesToMilliseconds(Integer minutes) {
-        Integer milliseconds;
-        return null; // Replace null with the variable you used to store the result
+        if (minutes == null) {
+            throw new Exception('Minutes is null. The minutes variable requires a value to move forward');
+        }
+        Integer milliseconds = minutes * MILLISECONDS_PER_MINUTE;
+        System.debug('Milliseconds: ' + milliseconds);
+        return milliseconds; // Replace null with the variable you used to store the result
     }    
 
     /**
@@ -232,8 +242,14 @@ public with sharing class VariablesDataTypesOperators {
      * @param c The third number.
      * @return The average of the three numbers.
      */
+    public static final Integer Number_Count = 3; 
     public static Double averageOfThreeNumbers(Integer a, Integer b, Integer c) {
-        return null; // Replace null with the variable you used to store the result
+        if ( a == null || b == null || c == null) { // Verify that all required inputs are present
+            throw new Exception('Integer a,b,and c must have a value'); 
+        }
+        Double average_result = (a + b + c)/ Number_Count; // Perform computation
+        System.debug('The average is: ' + average_result); // Print result to system
+        return average_result; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -248,10 +264,12 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Integer adjustOrderOfOperations1(Integer a, Integer b, Integer c) {
         // Add parentheses around the addition operation so that it is performed before multiplication
-        Integer result = a + b * c;
-
+        if ( a == null || b == null || c == null) { // Verify that all required inputs are present
+            throw new Exception('Integer a,b,and c must have a value'); 
+        }
+        Integer result = a + (b * c);
         // Return the result
-        return null; // Replace null with the variable you used to store the result
+        return result; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -263,8 +281,9 @@ public with sharing class VariablesDataTypesOperators {
         // Add parentheses in the below expression to change the result.
         // The result of the expression as it is right now is 43. 
         // You should add parentheses so that the result of the expression becomes 8.
-        Integer answer = 48 - 15 + 5 * 2;
-        return null; // Replace null with the variable you used to store the result
+        Integer answer = 48 - (15 + 5 * 2);
+        System.debug(answers);
+        return answer; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -283,9 +302,12 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Double complexOrderOfOperations(Integer a, Integer b, Integer c, Integer d, Integer e) {
         // Add parentheses around the multiplication and subtraction operations so that they are performed before division and addition
-        Double result = a * b - c / (Double) d + e;
-
-        return null; // Replace null with the variable you used to store the result
+        if (a == null || b == null || c == null || d == null || e == null) {
+            throw new Exception('Method variable can not have null values');
+        }
+        Double result = ((a * b) - c) / (Double) d + e;
+        System.debug(result);
+        return result; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -299,8 +321,13 @@ public with sharing class VariablesDataTypesOperators {
         final Double SUBTRACT_FACTOR = 32.0;
         final Double MULTIPLY_FACTOR = 5.0;
         final Double DIVIDE_FACTOR = 9.0;
-    
-        return null; // Replace null with the variable you used to store the result
+        
+        if (fahrenheit == null) {
+            throw new Exception('Fahrenheit temperature cannot be null'); // Handle null input safely 
+        }
+        Double celsius = (fahrenheit - SUBTRACT_FACTOR) * MULTIPLY_FACTOR / DIVIDE_FACTOR; // Perform conversion
+        System.debug('The temperature in Celsius is: ' + celsius); // Debug the result
+        return celsius; // Return the converted temperature
     }
 
     
