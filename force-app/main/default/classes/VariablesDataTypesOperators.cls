@@ -67,7 +67,7 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Integer multiplication(Integer a, Integer b) {
         if (a == null || b == null){
-            throw new Exception('All arguments must contain a value. Please enter 2 arguments and try again.'); // Handle null inputs safely
+        throw new IllegalArgumentException('Null arguments are not accepted.');    
         }
         Integer result = a * b; // Store computation in variable named result
         System.debug('The result of multiplication is:' + result);
@@ -109,9 +109,9 @@ public with sharing class VariablesDataTypesOperators {
         if (num == null) {
             return false; // Handle null inputs safely
         }
-        Integer number = math.mod(num, 2); // Store remainder of division in variable named number
-        if (number == 0) {
-            System.debug('Is number even?' + number);
+        Integer result = Math.mod(num, 2); // Store remainder of division in variable named number
+        if (result == 0) {
+            System.debug('Is number even?' + result);
             return true;
         }
         return false; // Replace null with the variable you used to store the result
@@ -169,7 +169,7 @@ public with sharing class VariablesDataTypesOperators {
 	 */
 	public static String createSentence(String noun, String verb, String endingPunctuation) {
         if (noun == null || verb == null || endingPunctuation == null) {
-            throw new Exception('Noun, Verb, or Ending Punctuation not provided');
+            return 'Null values are not acceptable';
         }
         String result = 'The ' + noun + ' is ' + verb + endingPunctuation;
         System.debug(result);
@@ -205,11 +205,11 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Boolean isDateTodayOrFuture(Date dt) {
         if (dt == null) {
-            throw new Exception('dt cannot be null');
+           throw new IllegalArgumentException('Null arguments are not accepted.');
         }
         if (dt >= Date.today()) {
-            return true;
-        System.debug(dt);
+            Boolean result = true;
+        System.debug(result);
         }
         return false; // Return false if the date is in the past
     }
@@ -225,7 +225,7 @@ public with sharing class VariablesDataTypesOperators {
     public static Integer convertMinutesToMilliseconds(Integer minutes) {
     Final Integer millisecondsPerMinute = 60000; // Make this value a constant
         if (minutes == null) {
-            throw new Exception('Minutes is null. The minutes variable requires a value to move forward');
+            throw new IllegalArgumentException('Null arguments are not accepted.');
         }
         Integer milliseconds = minutes * millisecondsPerMinute;
         System.debug('Milliseconds: ' + milliseconds);
@@ -245,7 +245,7 @@ public with sharing class VariablesDataTypesOperators {
     public static Double averageOfThreeNumbers(Integer a, Integer b, Integer c) {
         Final Integer numberCount = 3; 
         if ( a == null || b == null || c == null) { // Verify that all required inputs are present
-            throw new Exception('Integer a,b,and c must have a value'); 
+            throw new IllegalArgumentException('Null arguments are not accepted.'); 
         }
         Double averageResult = (a + b + c)/ numberCount; // Perform computation
         System.debug('The average is: ' + averageResult); // Print result to system
@@ -265,7 +265,7 @@ public with sharing class VariablesDataTypesOperators {
     public static Integer adjustOrderOfOperations1(Integer a, Integer b, Integer c) {
         // Add parentheses around the addition operation so that it is performed before multiplication
         if ( a == null || b == null || c == null) { // Verify that all required inputs are present
-            throw new Exception('Integer a,b,and c must have a value'); 
+            throw new IllegalArgumentException('Null arguments are not accepted.'); 
         }
         Integer result = a + (b * c);
         // Return the result
@@ -282,7 +282,7 @@ public with sharing class VariablesDataTypesOperators {
         // The result of the expression as it is right now is 43. 
         // You should add parentheses so that the result of the expression becomes 8.
         Integer answer = 48 - (15 + 5 * 2);
-        System.debug(answers);
+        System.debug(answer);
         return answer; // Replace null with the variable you used to store the result
     }
 
@@ -303,7 +303,7 @@ public with sharing class VariablesDataTypesOperators {
     public static Double complexOrderOfOperations(Integer a, Integer b, Integer c, Integer d, Integer e) {
         // Add parentheses around the multiplication and subtraction operations so that they are performed before division and addition
         if (a == null || b == null || c == null || d == null || e == null) {
-            throw new Exception('Method variable can not have null values');
+            throw new IllegalArgumentException('Null arguments are not accepted.');
         }
         Double result = ((a * b) - c) / (Double) d + e;
         System.debug(result);
@@ -323,7 +323,7 @@ public with sharing class VariablesDataTypesOperators {
         final Double divideFactor = 9.0;
         
         if (fahrenheit == null) {
-            throw new Exception('Fahrenheit temperature cannot be null'); // Handle null input safely 
+            throw new IllegalArgumentException('Null arguments are not accepted.');
         }
         Double celsius = (fahrenheit - subtractFactor) * multiplyFactor / divideFactor; // Perform conversion
         System.debug('The temperature in Celsius is: ' + celsius); // Debug the result
@@ -400,7 +400,7 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Decimal calculateTotalCost(Decimal pricePerUnit, Integer numberOfUnits, Decimal salesTaxRate) {
         if (pricePerUnit == null || numberOfUnits == null || salesTaxRate == null) {
-            throw new Exception('All arguments must be filled in order to run. Please insert values and try again.');            
+            throw new IllegalArgumentException('Null arguments are not accepted.');            
         }
         Decimal totalCost = (pricePerUnit * numberOfUnits) * (1 + salesTaxRate);
         System.debug('Total cost is: ' + totalCost);
