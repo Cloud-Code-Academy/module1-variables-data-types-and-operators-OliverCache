@@ -343,12 +343,15 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Integer performDivisionAndCast(Double a, Double b) {
         // Perform the division and cast (round down) off the result.
-        Double divisionResult = null;
+        Double divisionResult = a / b;
 
         // Write the code for type casting the divisionResult to an Integer
-        Integer roundedResult = null;
-        return null; // Replace null with the variable you used to store the result
+        Integer roundedResult = (Integer)divisionResult;
+        System.debug(roundedResult);
+        return roundedResult; // Replace null with the variable you used to store the result
     }
+
+
 
     /**
      * Question 18
@@ -371,7 +374,8 @@ public with sharing class VariablesDataTypesOperators {
      * Monthly Paycheck is calculated by the formula: weekly paycheck multiplied by 4.
      * Example: calculateMonthlyPaycheck(10.0, 40.0) should return 1600.0
      * @param hourlyRate The rate of pay per hour.
-     * @param numberOfHours The number of hours worked in a week.
+     * @param numberOfHours The number of hou
+     * rs worked in a week.
      * @return A Decimal representing the monthly paycheck.
      */
     public static Decimal calculateMonthlyPaycheck(Decimal hourlyRate, Double numberOfHours) {
