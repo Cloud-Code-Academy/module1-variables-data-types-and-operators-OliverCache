@@ -68,7 +68,8 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Integer multiplication(Integer a, Integer b) {
         if (a == null || b == null){
-            return null; // Handle null inputs safely
+            throw new Exception('All arguments must contain a value. Please enter 2 arguments and try again.'); // Handle null inputs safely
+        }
         Integer result = a * b; // Store computation in variable named result
         System.debug('The result of multiplication is:' + result);
         return result; // Computes the difference only if a value is present in each variable
@@ -109,7 +110,7 @@ public with sharing class VariablesDataTypesOperators {
         if (num == null) {
             return false; // Handle null inputs safely
         }
-        Integer number = num % 2; // Store remainder of division in variable named number
+        Integer number = math.mod(num, 2); // Store remainder of division in variable named number
         if (number == 0) {
             System.debug('Is number even?' + number);
             return true;
@@ -212,7 +213,7 @@ public with sharing class VariablesDataTypesOperators {
         System.debug(dt);
         }
         return false; // Return false if the date is in the past
-
+    }
     /**
      * Question 11
      * Converts the number of minutes to milliseconds.
@@ -222,12 +223,12 @@ public with sharing class VariablesDataTypesOperators {
      * @param minutes The number of minutes.
      * @return The number of milliseconds equivalent to the given number of minutes.
      */
-    public static final Integer MILLISECONDS_PER_MINUTE = 60000; // Make this value a constant
     public static Integer convertMinutesToMilliseconds(Integer minutes) {
+    Final Integer millisecondsPerMinute = 60000; // Make this value a constant
         if (minutes == null) {
             throw new Exception('Minutes is null. The minutes variable requires a value to move forward');
         }
-        Integer milliseconds = minutes * MILLISECONDS_PER_MINUTE;
+        Integer milliseconds = minutes * millisecondsPerMinute;
         System.debug('Milliseconds: ' + milliseconds);
         return milliseconds; // Replace null with the variable you used to store the result
     }    
@@ -242,14 +243,14 @@ public with sharing class VariablesDataTypesOperators {
      * @param c The third number.
      * @return The average of the three numbers.
      */
-    public static final Integer Number_Count = 3; 
     public static Double averageOfThreeNumbers(Integer a, Integer b, Integer c) {
+        Final Integer numberCount = 3; 
         if ( a == null || b == null || c == null) { // Verify that all required inputs are present
             throw new Exception('Integer a,b,and c must have a value'); 
         }
-        Double average_result = (a + b + c)/ Number_Count; // Perform computation
-        System.debug('The average is: ' + average_result); // Print result to system
-        return average_result; // Replace null with the variable you used to store the result
+        Double averageResult = (a + b + c)/ numberCount; // Perform computation
+        System.debug('The average is: ' + averageResult); // Print result to system
+        return averageResult; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -318,14 +319,14 @@ public with sharing class VariablesDataTypesOperators {
      * @return The temperature in Celsius equivalent to the given Fahrenheit temperature.
      */
     public static Double convertFahrenheitToCelsius(Double fahrenheit) {
-        final Double SUBTRACT_FACTOR = 32.0;
-        final Double MULTIPLY_FACTOR = 5.0;
-        final Double DIVIDE_FACTOR = 9.0;
+        final Double subtractFactor = 32.0;
+        final Double multiplyFactor = 5.0;
+        final Double divideFactor = 9.0;
         
         if (fahrenheit == null) {
             throw new Exception('Fahrenheit temperature cannot be null'); // Handle null input safely 
         }
-        Double celsius = (fahrenheit - SUBTRACT_FACTOR) * MULTIPLY_FACTOR / DIVIDE_FACTOR; // Perform conversion
+        Double celsius = (fahrenheit - subtractFactor) * multiplyFactor / divideFactor; // Perform conversion
         System.debug('The temperature in Celsius is: ' + celsius); // Debug the result
         return celsius; // Return the converted temperature
     }
@@ -400,8 +401,8 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Decimal calculateTotalCost(Decimal pricePerUnit, Integer numberOfUnits, Decimal salesTaxRate) {
         if (pricePerUnit == null || numberOfUnits == null || salesTaxRate == null) {
-            throw new Exception('All arguments must be filled in order to run. Please insert values and try again.')            
-        };
+            throw new Exception('All arguments must be filled in order to run. Please insert values and try again.');            
+        }
         Decimal totalCost = (pricePerUnit * numberOfUnits) * (1 + salesTaxRate);
         System.debug('Total cost is: ' + totalCost);
         return totalCost; // Replace null with the variable you used to store the result
