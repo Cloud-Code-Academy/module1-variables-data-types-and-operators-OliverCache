@@ -364,7 +364,9 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Decimal calculateWeeklyPaycheck(Decimal hourlyRate, Double numberOfHours) {
         // Calculate the weekly paycheck using the formula: rate multiplied by hours
-        return null; // Replace null with the variable you used to store the result
+        Decimal paycheckResult = hourlyRate * numberOfHours;
+        System.debug('Weekly Paycheck amount is ' + paycheckResult);
+        return paycheckResult; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -379,7 +381,11 @@ public with sharing class VariablesDataTypesOperators {
      * @return A Decimal representing the monthly paycheck.
      */
     public static Decimal calculateMonthlyPaycheck(Decimal hourlyRate, Double numberOfHours) {
-        return null; // Replace null with the variable you used to store the result
+        final Integer numberOfWeeks = 4;
+        Decimal weeklyPaycheck = hourlyRate * numberOfHours;
+        Decimal monthlyPaycheck = weeklyPaycheck * numberOfWeeks;
+        System.debug('Monthly paycheck amount is: ' + monthlyPaycheck);
+        return monthlyPaycheck; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -393,6 +399,11 @@ public with sharing class VariablesDataTypesOperators {
      * @return The total cost after applying the sales tax.
      */
     public static Decimal calculateTotalCost(Decimal pricePerUnit, Integer numberOfUnits, Decimal salesTaxRate) {
-        return null; // Replace null with the variable you used to store the result
+        if (pricePerUnit == null || numberOfUnits == null || salesTaxRate == null) {
+            throw new Exception('All arguments must be filled in order to run. Please insert values and try again.')            
+        };
+        Decimal totalCost = (pricePerUnit * numberOfUnits) * (1 + salesTaxRate);
+        System.debug('Total cost is: ' + totalCost);
+        return totalCost; // Replace null with the variable you used to store the result
     }
 }
