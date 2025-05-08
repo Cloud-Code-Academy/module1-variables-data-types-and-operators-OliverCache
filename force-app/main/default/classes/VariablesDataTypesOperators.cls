@@ -37,8 +37,7 @@ public with sharing class VariablesDataTypesOperators {
         }
         Integer result = a + b; // Store computation in variable named result
         System.debug('The result of addition is:' + result); // debug the result variable for demonstration purposes
-        return result; // Returns the sum only if a value is present in each variable
-        
+        return result; // Returns the sum only if a value is present in each variable     
     }
 
     /**
