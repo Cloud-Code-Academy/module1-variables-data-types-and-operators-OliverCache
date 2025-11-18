@@ -18,7 +18,7 @@
  * If statements are not specifically covered in the lesson this module, but review module 2 flow control section for an overview if needed.
  * Resources: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_if_else.htm 
  * 
- * @author Your Name
+ * @author Oliver Cache
  */
 
 public with sharing class VariablesDataTypesOperators {
@@ -31,8 +31,13 @@ public with sharing class VariablesDataTypesOperators {
      * @param b The second number.
      * @return The sum of the two numbers, or null if either number is null.
      */
-    public static Integer addition(Integer a, Integer b) {  
-        return null; // Replace null with the variable you used to store the result
+    public static Integer addition(Integer a, Integer b) {
+        if (a == null || b == null) {
+            return null; // Handle null inputs safely
+        }
+        Integer result = a + b; // Store computation in variable named result
+        System.debug('The result of addition is:' + result); // debug the result variable for demonstration purposes
+        return result; // Returns the sum only if a value is present in each variable
     }
 
     /**
@@ -44,7 +49,12 @@ public with sharing class VariablesDataTypesOperators {
      * @return The difference between the two numbers.
      */
     public static Integer subtraction(Integer a, Integer b) {
-        return null; // Replace null with the variable you used to store the result
+        if (a == null || b == null) {
+            return null; // Handle null inputs safely
+        }
+        Integer result = a - b; // Store computation in variable named result
+        System.debug('The result of subtraction is:' + result);
+        return result; // Replace the diference only if a value is present in each variable
     }
 
     /**
@@ -56,7 +66,12 @@ public with sharing class VariablesDataTypesOperators {
      * @return The product of the two numbers.
      */
     public static Integer multiplication(Integer a, Integer b) {
-        return null; // Replace null with the variable you used to store the result
+        if (a == null || b == null) {
+            throw new IllegalArgumentException('Null arguments are not accepted.');
+        }
+        Integer result = a * b; // Store computation in variable named result
+        System.debug('The result of multiplication is:' + result);
+        return result; // Computes the difference only if a value is present in each variable
     }
 
     /**
@@ -69,7 +84,16 @@ public with sharing class VariablesDataTypesOperators {
      * @return The quotient of the division, or 0 if the denominator is zero.
      */
     public static Double division(Double a, Double b) {
-        return null; // Replace null with the variable you used to store the result
+        if (a == null || b == null) {
+            // Handle null inputs safely
+            throw new IllegalArgumentException('Null arguments are not accepted.');
+        }
+        if (b == 0) {
+            // Handle division by zero safely
+            return 0;
+        }
+        Double result = a / b; // Store computation in variable named result
+        return result; // perform division safely
     }
 
     /**
@@ -83,7 +107,15 @@ public with sharing class VariablesDataTypesOperators {
      * @return True if the number is even, False otherwise.
      */
     public static Boolean isEven(Integer num) {
-        return null; // Replace null with the variable you used to store the result
+        if (num == null) {
+            return false; // Handle null inputs safely
+        }
+        Integer result = Math.mod(num, 2); // Store remainder of division in variable named number
+        if (result == 0) {
+            System.debug('Is number even?' + result);
+            return true;
+        }
+        return false; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -94,7 +126,14 @@ public with sharing class VariablesDataTypesOperators {
      * @return true if the number is positive, false otherwise.
      */
     public static Boolean isPositive(Integer num) {
-        return null; // Replace null with the variable you used to store the result
+        if (num == null) {
+            return false; // Handle null safely
+        }   
+        if (num > 0) {
+            System.debug('Number greater than zero is: ' + num);
+            return true; //Check if number is greater than 0
+        }
+        return false;
     }
 
     /**
@@ -106,23 +145,36 @@ public with sharing class VariablesDataTypesOperators {
      * @return The concatenated string.
      */
     public static String concatenateStrings(String str1, String str2) {
-        return null; // Replace null with the variable you used to store the result
+        if (str1 == null) {
+            str1 = ''; // Convert null to an empty string
+        }
+        if (str2 == null) {
+            str2 = ''; // Convert null to an empty string
+        }
+        String result = str1 + str2; //concatenate strings
+        System.debug(result); // Display result on debug
+        return result; // result concatenated string
     }
 
-	/**
+    /**
      * Question 8
-	 * Constructs a sentence by concatenating a given noun, verb, and ending punctuation.
-	 * The sentence is structured to begin with 'The', followed by the noun, then 'is', the verb, and finally the ending punctuation.
-	 * Example: createSentence('cat', 'jumping', '!') should return 'The cat is jumping!'
-	 * Example: createSentence('bird', 'flying', '.') should return 'The bird is flying.'
-	 * @param noun The noun or subject of the sentence.
-	 * @param verb The verb or action of the sentence.
-	 * @param endingPunctuation The punctuation to end the sentence, e.g., '.', '!', '?'
-	 * @return The complete sentence as a single String.
-	 */
-	public static String createSentence(String noun, String verb, String endingPunctuation) {
-		return null; // Replace null with the variable you used to store the result
-	}
+     * Constructs a sentence by concatenating a given noun, verb, and ending punctuation.
+     * The sentence is structured to begin with 'The', followed by the noun, then 'is', the verb, and finally the ending punctuation.
+     * Example: createSentence('cat', 'jumping', '!') should return 'The cat is jumping!'
+     * Example: createSentence('bird', 'flying', '.') should return 'The bird is flying.'
+     * @param noun The noun or subject of the sentence.
+     * @param verb The verb or action of the sentence.
+     * @param endingPunctuation The punctuation to end the sentence, e.g., '.', '!', '?'
+     * @return The complete sentence as a single String.
+     */
+    public static String createSentence(String noun, String verb, String endingPunctuation) {
+        if (noun == null || verb == null || endingPunctuation == null) {
+            return 'Null values are not acceptable';
+        }
+        String result = 'The ' + noun + ' is ' + verb + endingPunctuation;
+        System.debug(result);
+        return result; // Return the constructed sentence
+    }
 
     /**
      * Question 9
@@ -134,7 +186,10 @@ public with sharing class VariablesDataTypesOperators {
      * @return True if the date is in the past, False otherwise.
      */
     public static Boolean isDateInPast(Date dt) {
-        return null; // Replace null with the variable you used to store the result
+        if (dt < Date.today()) {
+            return true;
+        }
+        return false; // returns false if date is in the future
     }
 
     /**
@@ -147,7 +202,13 @@ public with sharing class VariablesDataTypesOperators {
      * @return True if the date is today or in the future, False otherwise.
      */
     public static Boolean isDateTodayOrFuture(Date dt) {
-        return null; // Replace null with the variable you used to store the result
+        if (dt == null) {
+            throw new IllegalArgumentException('Null arguments are not accepted.');
+        }
+        if (dt >= Date.today()) {
+            return true;
+        }
+        return false; // Return false if the date is in the past
     }
 
     /**
@@ -159,11 +220,15 @@ public with sharing class VariablesDataTypesOperators {
      * @param minutes The number of minutes.
      * @return The number of milliseconds equivalent to the given number of minutes.
      */
-    Integer MILLISECONDS_PER_MINUTE = null; // Make this value a constant
     public static Integer convertMinutesToMilliseconds(Integer minutes) {
-        Integer milliseconds;
-        return null; // Replace null with the variable you used to store the result
-    }    
+        final Integer millisecondsPerMinute = 60000; // Make this value a constant
+        if (minutes == null) {
+            throw new IllegalArgumentException('Null arguments are not accepted.');
+        }
+        Integer milliseconds = minutes * millisecondsPerMinute;
+        System.debug('Milliseconds: ' + milliseconds);
+        return milliseconds; // Replace null with the variable you used to store the result
+    }
 
     /**
      * Question 12
@@ -176,7 +241,13 @@ public with sharing class VariablesDataTypesOperators {
      * @return The average of the three numbers.
      */
     public static Double averageOfThreeNumbers(Integer a, Integer b, Integer c) {
-        return null; // Replace null with the variable you used to store the result
+        final Integer numberCount = 3; 
+        if (a == null || b == null || c == null) { // Verify that all required inputs are present
+            throw new IllegalArgumentException('Null arguments are not accepted.'); 
+        }
+        Double averageResult = (a + b + c) / numberCount; // Perform computation
+        System.debug('The average is: ' + averageResult); // Print result to system
+        return averageResult; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -191,10 +262,12 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Integer adjustOrderOfOperations1(Integer a, Integer b, Integer c) {
         // Add parentheses around the addition operation so that it is performed before multiplication
-        Integer result = a + b * c;
-
+        if (a == null || b == null || c == null) { // Verify that all required inputs are present
+            throw new IllegalArgumentException('Null arguments are not accepted.'); 
+        }
+        Integer result = (a + b) * c;
         // Return the result
-        return null; // Replace null with the variable you used to store the result
+        return result; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -206,8 +279,8 @@ public with sharing class VariablesDataTypesOperators {
         // Add parentheses in the below expression to change the result.
         // The result of the expression as it is right now is 43. 
         // You should add parentheses so that the result of the expression becomes 8.
-        Integer answer = 48 - 15 + 5 * 2;
-        return null; // Replace null with the variable you used to store the result
+        Integer answer = 48 - ((15 + 5) * 2);
+        return answer; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -226,9 +299,12 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Double complexOrderOfOperations(Integer a, Integer b, Integer c, Integer d, Integer e) {
         // Add parentheses around the multiplication and subtraction operations so that they are performed before division and addition
-        Double result = a * b - c / (Double) d + e;
-
-        return null; // Replace null with the variable you used to store the result
+        if (a == null || b == null || c == null || d == null || e == null) {
+            throw new IllegalArgumentException('Null arguments are not accepted.');
+        }
+        Double result = ((a * b) - c) / (Double) d + e;
+        System.debug(result);
+        return result; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -242,11 +318,14 @@ public with sharing class VariablesDataTypesOperators {
         final Double SUBTRACT_FACTOR = 32.0;
         final Double MULTIPLY_FACTOR = 5.0;
         final Double DIVIDE_FACTOR = 9.0;
-    
-        return null; // Replace null with the variable you used to store the result
+        // check for null first
+        if (fahrenheit == null) {
+            throw new IllegalArgumentException('Null arguments are not accepted.');
+        }
+        Double celsius = (fahrenheit - SUBTRACT_FACTOR) * MULTIPLY_FACTOR / DIVIDE_FACTOR; // Perform conversion
+        System.debug('The temperature in Celsius is: ' + celsius); // Debug the result
+        return celsius; // Return the converted temperature
     }
-
-    
 
     /**
      * Question 17
@@ -259,11 +338,11 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Integer performDivisionAndCast(Double a, Double b) {
         // Perform the division and cast (round down) off the result.
-        Double divisionResult = null;
-
+        Double divisionResult = a / b;
         // Write the code for type casting the divisionResult to an Integer
-        Integer roundedResult = null;
-        return null; // Replace null with the variable you used to store the result
+        Integer roundedResult = (Integer)divisionResult;
+        System.debug(roundedResult);
+        return roundedResult; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -277,7 +356,9 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Decimal calculateWeeklyPaycheck(Decimal hourlyRate, Double numberOfHours) {
         // Calculate the weekly paycheck using the formula: rate multiplied by hours
-        return null; // Replace null with the variable you used to store the result
+        Decimal paycheckResult = hourlyRate * numberOfHours;
+        System.debug('Weekly Paycheck amount is ' + paycheckResult);
+        return paycheckResult; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -291,7 +372,11 @@ public with sharing class VariablesDataTypesOperators {
      * @return A Decimal representing the monthly paycheck.
      */
     public static Decimal calculateMonthlyPaycheck(Decimal hourlyRate, Double numberOfHours) {
-        return null; // Replace null with the variable you used to store the result
+        final Integer numberOfWeeks = 4;
+        Decimal weeklyPaycheck = hourlyRate * numberOfHours;
+        Decimal monthlyPaycheck = weeklyPaycheck * numberOfWeeks;
+        System.debug('Monthly paycheck amount is: ' + monthlyPaycheck);
+        return monthlyPaycheck; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -305,6 +390,11 @@ public with sharing class VariablesDataTypesOperators {
      * @return The total cost after applying the sales tax.
      */
     public static Decimal calculateTotalCost(Decimal pricePerUnit, Integer numberOfUnits, Decimal salesTaxRate) {
-        return null; // Replace null with the variable you used to store the result
+        if (pricePerUnit == null || numberOfUnits == null || salesTaxRate == null) {
+            throw new IllegalArgumentException('Null arguments are not accepted.');            
+        }
+        Decimal totalCost = (pricePerUnit * numberOfUnits) * (1 + salesTaxRate);
+        System.debug('Total cost is: ' + totalCost);
+        return totalCost; // Replace null with the variable you used to store the result
     }
 }
