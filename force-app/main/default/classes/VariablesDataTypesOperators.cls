@@ -187,8 +187,6 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Boolean isDateInPast(Date dt) {
         if ( dt < Date.today()) {
-            String result = 'Date is in the past';
-            System.debug(result);
             return true;
         }
         return false; // returns false if date is in the future
@@ -208,8 +206,7 @@ public with sharing class VariablesDataTypesOperators {
            throw new IllegalArgumentException('Null arguments are not accepted.');
         }
         if (dt >= Date.today()) {
-            Boolean result = true;
-        System.debug(result);
+            return true;
         }
         return false; // Return false if the date is in the past
     }
@@ -223,7 +220,7 @@ public with sharing class VariablesDataTypesOperators {
      * @return The number of milliseconds equivalent to the given number of minutes.
      */
     public static Integer convertMinutesToMilliseconds(Integer minutes) {
-    Final Integer millisecondsPerMinute = 60000; // Make this value a constant
+    final Integer millisecondsPerMinute = 60000; // Make this value a constant
         if (minutes == null) {
             throw new IllegalArgumentException('Null arguments are not accepted.');
         }
@@ -318,14 +315,14 @@ public with sharing class VariablesDataTypesOperators {
      * @return The temperature in Celsius equivalent to the given Fahrenheit temperature.
      */
     public static Double convertFahrenheitToCelsius(Double fahrenheit) {
-        final Double subtractFactor = 32.0;
-        final Double multiplyFactor = 5.0;
-        final Double divideFactor = 9.0;
+        final Double SUBTRACT_FACTOR = 32.0;
+        final Double MULTIPLY_FACTOR = 5.0;
+        final Double DIVIDE_FACTOR = 9.0;
         
         if (fahrenheit == null) {
             throw new IllegalArgumentException('Null arguments are not accepted.');
         }
-        Double celsius = (fahrenheit - subtractFactor) * multiplyFactor / divideFactor; // Perform conversion
+        Double celsius = (fahrenheit - SUBTRACT_FACTOR) * MULTIPLY_FACTOR / DIVIDE_FACTOR; // Perform conversion
         System.debug('The temperature in Celsius is: ' + celsius); // Debug the result
         return celsius; // Return the converted temperature
     }
@@ -362,7 +359,8 @@ public with sharing class VariablesDataTypesOperators {
      * @param numberOfHours The number of hours worked in a week.
      * @return A Decimal representing the weekly paycheck.
      */
-    public static Decimal calculateWeeklyPaycheck(Decimal hourlyRate, Double numberOfHours) {
+    
+     public static Decimal calculateWeeklyPaycheck(Decimal hourlyRate, Double numberOfHours) {
         // Calculate the weekly paycheck using the formula: rate multiplied by hours
         Decimal paycheckResult = hourlyRate * numberOfHours;
         System.debug('Weekly Paycheck amount is ' + paycheckResult);
