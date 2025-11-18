@@ -85,13 +85,14 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Double division(Double a, Double b) {
         if (a == null || b == null) {
-            return null; // Handle null inputs safely
+            // Handle null inputs safely
+            throw new IllegalArgumentException('Null arguments are not accepted.');
         }
         if (b == 0) {
-            return null; // Handle division by zero safely
+            // Handle division by zero safely
+            return 0;
         }
         Double result = a / b; // Store computation in variable named result
-        System.debug('The result of division is:' + result);
         return result; // perform division safely
     }
 
@@ -264,7 +265,7 @@ public with sharing class VariablesDataTypesOperators {
         if (a == null || b == null || c == null) { // Verify that all required inputs are present
             throw new IllegalArgumentException('Null arguments are not accepted.'); 
         }
-        Integer result = a + (b * c);
+        Integer result = (a + b) * c;
         // Return the result
         return result; // Replace null with the variable you used to store the result
     }
@@ -278,8 +279,7 @@ public with sharing class VariablesDataTypesOperators {
         // Add parentheses in the below expression to change the result.
         // The result of the expression as it is right now is 43. 
         // You should add parentheses so that the result of the expression becomes 8.
-        Integer answer = 48 - (15 + 5 * 2);
-        System.debug(answer);
+        Integer answer = 48 - ((15 + 5) * 2);
         return answer; // Replace null with the variable you used to store the result
     }
 
