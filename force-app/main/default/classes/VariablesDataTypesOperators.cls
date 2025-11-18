@@ -37,8 +37,8 @@ public with sharing class VariablesDataTypesOperators {
         }
         Integer result = a + b; // Store computation in variable named result
         System.debug('The result of addition is:' + result); // debug the result variable for demonstration purposes
-        return result; // Returns the sum only if a value is present in each variable     
-    }
+        return result; // Returns the sum only if a value is present in each variable
+        }
 
     /**
      * Question 2
@@ -67,7 +67,7 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Integer multiplication(Integer a, Integer b) {
         if (a == null || b == null){
-        throw new IllegalArgumentException('Null arguments are not accepted.');    
+        throw new IllegalArgumentException('Null arguments are not accepted.');
         }
         Integer result = a * b; // Store computation in variable named result
         System.debug('The result of multiplication is:' + result);
@@ -227,7 +227,7 @@ public with sharing class VariablesDataTypesOperators {
         Integer milliseconds = minutes * millisecondsPerMinute;
         System.debug('Milliseconds: ' + milliseconds);
         return milliseconds; // Replace null with the variable you used to store the result
-    }    
+    }
 
     /**
      * Question 12
@@ -318,7 +318,7 @@ public with sharing class VariablesDataTypesOperators {
         final Double SUBTRACT_FACTOR = 32.0;
         final Double MULTIPLY_FACTOR = 5.0;
         final Double DIVIDE_FACTOR = 9.0;
-        
+        // check for null first
         if (fahrenheit == null) {
             throw new IllegalArgumentException('Null arguments are not accepted.');
         }
@@ -326,8 +326,6 @@ public with sharing class VariablesDataTypesOperators {
         System.debug('The temperature in Celsius is: ' + celsius); // Debug the result
         return celsius; // Return the converted temperature
     }
-
-    
 
     /**
      * Question 17
